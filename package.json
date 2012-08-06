@@ -1,0 +1,19 @@
+{
+  "name": "dir-watch",
+  "version": "0.0.1",
+  "description": "Listen a directory for file changes",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test/*.js"
+  },
+  "repository": "",
+  "keywords": [
+    "watch",
+    ""
+  ],
+  "author": "Guillaume PARIS <guillaume.paris.work@gmail.com>",
+  "license": "BSD"
+}
