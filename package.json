@@ -15,5 +15,9 @@
     ""
   ],
   "author": "Guillaume PARIS <guillaume.paris.work@gmail.com>",
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+   // Use any version
+   "watch": ""
+ }
 }
