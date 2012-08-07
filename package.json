@@ -1,5 +1,5 @@
 {
-  "name": "dir-watch",
+  "name": "javascript-packager",
   "version": "0.0.1",
   "description": "Listen a directory for file changes",
   "main": "index.js",
@@ -12,12 +12,16 @@
   "repository": "",
   "keywords": [
     "watch",
-    ""
+    "javascript",
+    "packager"
   ],
   "author": "Guillaume PARIS <guillaume.paris.work@gmail.com>",
   "license": "BSD",
   "devDependencies": {
    // Use any version
-   "watch": ""
+   "watch": "",
+   "nopt": "",
+   "path": "",
+   "uglify": ""
  }
 }
