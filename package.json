@@ -16,7 +16,7 @@
     "packager"
   ],
   "author": "Guillaume PARIS <guillaume.paris.work@gmail.com>",
-  "license": "BSD",
+  "license": "Creative Common",
   "devDependencies": {
    // Use any version
    "watch": "",
