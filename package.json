@@ -1,27 +1,44 @@
 {
   "name": "javascript-packager",
+  "description": "Listen a directory to package the javascript files",
   "version": "0.0.1",
-  "description": "Listen a directory for file changes",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "author": {
+    "name": "Guillaume PARIS",
+    "email": "guillaume.paris.work@gmail.com",
+    "url": "https://github.com/guillaumeparis2000"
   },
-  "scripts": {
-    "test": "test/*.js"
-  },
-  "repository": "",
   "keywords": [
     "watch",
     "javascript",
-    "packager"
+	"packager",
+	"uglify",
+	"minify"
   ],
-  "author": "Guillaume PARIS <guillaume.paris.work@gmail.com>",
-  "license": "Creative Common",
-  "devDependencies": {
-   // Use any version
-   "watch": "",
-   "nopt": "",
-   "path": "",
-   "uglify": ""
- }
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "main": "./bin",
+  "homepage": "https://github.com/guillaumeparis2000/javascript-packager",
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "dependencies": {
+    "colors": ">= 0.3.0",
+    "nopt": ">= 1.0.10",
+    "watch": ">= 0.5.1",
+    "uglify-js": ">=1.3.3",
+    "path": ">=0.4.9"
+  },
+  "directories": {
+    "bin": "./bin"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "bin": {
+    "javascript-packager": "./bin/javascript-packager"
+  }
 }

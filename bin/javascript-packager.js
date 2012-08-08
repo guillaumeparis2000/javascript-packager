@@ -15,6 +15,7 @@ if (process.argv.length == 2)
 
 // define expected options
 options = {
+	"watch": Boolean,
     "path": String,
     "jsFile": String,
     "destDir": String,
@@ -25,7 +26,12 @@ options = {
 options = nopt(options, {}, process.argv);
 
 doAllJsProcess();
-watchForJsChanges(options.path);
+
+if(options.watch)
+{
+	watchForJsChanges(options.path);
+}
+
 /**
  * Wath for file changes in the folder given by path
  */
