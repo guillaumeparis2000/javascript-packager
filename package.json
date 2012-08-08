@@ -1,7 +1,7 @@
 {
   "name": "javascript-packager",
   "description": "Conactenate and minify javscripts files",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": {
     "name": "Guillaume PARIS",
     "email": "guillaume.paris.work@gmail.com",

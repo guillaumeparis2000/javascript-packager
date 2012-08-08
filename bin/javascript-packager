@@ -87,16 +87,18 @@ function watchForJsChanges(path, jsConfigFile)
 function getJsFilesToProcess(jsConfigFile, path)
 {
     var stringFiles = fs.readFileSync(jsConfigFile);
+    var files = [];
 
     var jsFiles = stringFiles.toString('utf8');
-    var reg=new RegExp("\n", "g");
-    jsFiles = jsFiles.replace(reg, '');
-    jsFiles = jsFiles.split('@import: ');
+    var lines = jsFiles.split('\n');
 
-    // remove first empty element
-    jsFiles.shift();
-    
-    return jsFiles;
+    for (var i=0; i < lines.length; i++)
+    {
+		if(lines[i].indexOf("@import: ") != -1){
+				 files.push(lines[i].replace("@import: ", ''));
+		}
+    }
+    return files;
 }
 
 /**
