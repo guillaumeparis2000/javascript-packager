@@ -134,7 +134,7 @@ function copyFinalFiles(destDir, destFile, concatenatedJs, minifyedJs)
 {
     fs.writeFile(destDir + '/' + destFile + '.js', concatenatedJs, function(err) {
         if(err) {
-            printMessage(err);
+            console.log("copyFinalFiles: "+err);
         } else {
             printMessage('The '+destDir + '/' + destFile + '.js was saved!');
         }
@@ -142,7 +142,7 @@ function copyFinalFiles(destDir, destFile, concatenatedJs, minifyedJs)
 
     fs.writeFile(destDir + '/' + destFile + '.min.js', minifyedJs, function(err) {
         if(err) {
-            printMessage(err);
+            console.log("copyFinalFiles: "+err);
         } else {
             printMessage('The '+destDir + '/' + destFile + '.min.js was saved!');
         }
