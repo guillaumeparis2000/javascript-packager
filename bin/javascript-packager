@@ -105,7 +105,7 @@ function getJsFilesToProcess(jsConfigFile, path)
 function concatJsFiles(jsFiles, path)
 {
     var numberFile = jsFiles.length;
-    var concatenatedJs = null;
+    var concatenatedJs;
     for (var i=0; i<numberFile; i++)
     {
         concatenatedJs += fs.readFileSync(path + '/' + jsFiles[i]).toString('utf8');
