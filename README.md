@@ -7,7 +7,7 @@ USAGE
 -----
 ####GENERAL USE: ####
 ```bash
-$javascript-packager [--watch] ][--path] [--jsFile] [--destDir] [--destFile] 
+$javascript-packager [--watch] ][--path] [--jsFile] [--destDir] [--destFile] [--debug]
 ```
 
 --watch: watch the javascript folder for changes, if changes concatenate and minify the javascripts files another time
@@ -19,6 +19,8 @@ $javascript-packager [--watch] ][--path] [--jsFile] [--destDir] [--destFile]
 --destDir: destination directory for the concatenated and minifyed js files
 
 --destFile: name of the concatenated and minifyed files withtout .js
+
+--debug: enable debug message in the console
 
 
 ####EXAMPLE:####

@@ -14,12 +14,13 @@ if (process.argv.length == 2)
 }
 
 // define expected options
-options = {
+var options = {
 	"watch": Boolean,
     "path": String,
     "jsFile": String,
     "destDir": String,
-    "destFile": String
+    "destFile": String,
+	"debug": Boolean
 }
 
 // parse options
@@ -29,30 +30,53 @@ doAllJsProcess();
 
 if(options.watch)
 {
-	watchForJsChanges(options.path);
+	watchForJsChanges(options.path, options.jsFile);
 }
 
 /**
  * Wath for file changes in the folder given by path
  */
-function watchForJsChanges(path)
+function watchForJsChanges(path, jsConfigFile)
 {
+	// monitor only file inside the jsConfigFile
+	var jsFiles = getJsFilesToProcess(jsConfigFile, path);
+	numberFile = jsFiles.length
+	var files = null;
+	for (var i=0; i<numberFile; i++)
+    {
+		jsFiles[i] = path + '/' + jsFiles[i];
+    }
+	jsFiles[i+1] = jsConfigFile;
+
+
     // Watch for file changes
-    watch.createMonitor(path, function (monitor) {
+    watch.createMonitor(path, function (monitor) 
+	{
         monitor.on("created", function (f, stat) {
             // Handle file changes
-            console.log(f + " was created");
-            doAllJsProcess();
+            printMessage(f + " was created");
+			if(inArray(f, jsFiles))
+			{
+            	doAllJsProcess();
+			}
         })
         monitor.on("changed", function (f, curr, prev) {
             // Handle new files
-            console.log(f + " was changed");
-            doAllJsProcess();
+            printMessage(f + " was changed");
+			if(inArray(f, jsFiles))
+			{
+            	doAllJsProcess();
+			}
+
         })
         monitor.on("removed", function (f, stat) {
             // Handle removed files
-            console.log(f + " was removed");
-            doAllJsProcess();
+            printMessage(f + " was removed");
+			if(inArray(f, jsFiles))
+			{
+            	doAllJsProcess();
+			}
+
         })
     });
 }
@@ -110,17 +134,17 @@ function copyFinalFiles(destDir, destFile, concatenatedJs, minifyedJs)
 {
     fs.writeFile(destDir + '/' + destFile + '.js', concatenatedJs, function(err) {
         if(err) {
-            console.log(err);
+            printMessage(err);
         } else {
-            console.log('The '+destDir + '/' + destFile + '.js was saved!');
+            printMessage('The '+destDir + '/' + destFile + '.js was saved!');
         }
     });
 
     fs.writeFile(destDir + '/' + destFile + '.min.js', minifyedJs, function(err) {
         if(err) {
-            console.log(err);
+            printMessage(err);
         } else {
-            console.log('The '+destDir + '/' + destFile + '.min.js was saved!');
+            printMessage('The '+destDir + '/' + destFile + '.min.js was saved!');
         }
     });
 
@@ -151,15 +175,38 @@ function doAllJsProcess()
 
 function docs()
 {
-    console.log("\nGENERAL USE: " + "$".grey + "javascript-packager".cyan + " [path] ".yellow + "[jsFile] ".yellow + "[destDir] ".yellow + "[destFile] ".yellow);
-	console.log("\n\n--path: path to js files");
+    console.log("\nGENERAL USE: " + "$".grey + "javascript-packager".cyan + " [--watch] ".grey + " [--path] ".yellow + "[--jsFile] ".yellow + "[--destDir] ".yellow + "[--destFile] ".yellow + "[--debug] ".grey);
+	console.log("\n\n--watch: watch the javascript folder for changes, if changes concatenate and minify the javascripts files another time");
+	console.log("\n--path: path to js files");
 	console.log("\n--jsFile: javascript configuration file, every importation line must start by @import: ");
 	console.log("\n--destDir: destination directory for the concatenated and minifyed js files");
 	console.log("\n--destFile: name of the concatenated and minifyed files withtout .js");
+	console.log("\n--debug: enable debug message in the console");
 	console.log("\n\nEXAMPLE:");
 	console.log("\njsFile:");
 	console.log("\n@import: script1.js\n@import: script2.js\n...\n@import: scriptX.js");
 	console.log("\n\njavascript-packager:");
 	console.log("\n$".grey + "javascript-packager".cyan + "--jsFile src/js/javascript.config --destDir ../../workspace/build/src/js --destFile file".yellow);
    return;
+}
+
+function inArray(needle, haystack) 
+{
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) 
+	{
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+
+/**
+ * Print a message only if debug enable
+ */
+function printMessage(message)
+{
+	if(options.debug)
+	{
+		console.log(message);
+	}
 }
