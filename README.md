@@ -24,12 +24,12 @@ $javascript-packager [--watch] ][--path] [--jsFile] [--destDir] [--destFile]
 ####EXAMPLE:####
 
 #####jsFile:#####
-
+```
 @import: script1.js
 @import: script2.js
 ...
 @import: scriptX.js
-
+```
 
 #####javascript-packager:#####
 ```bash
