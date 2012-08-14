@@ -95,7 +95,7 @@ function getJsFilesToProcess(jsConfigFile, path)
     for (var i=0; i < lines.length; i++)
     {
 		if(lines[i].indexOf("@import: ") != -1){
-				 files.push(lines[i].replace("@import: ", '')).replace(/[\r\n]/g, ""));
+				 files.push(lines[i].replace("@import: ", '').replace(/[\r\n]/g, ""));
 		}
     }
     return files;
