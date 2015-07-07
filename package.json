@@ -1,6 +1,6 @@
 {
   "name": "javascript-packager",
-  "description": "Conactenate and minify javscripts files",
+  "description": "Concatenate and minify javscripts files",
   "version": "0.0.13",
   "author": {
     "name": "Guillaume PARIS",
